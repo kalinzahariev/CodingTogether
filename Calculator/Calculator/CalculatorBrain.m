@@ -44,19 +44,45 @@
         result = [self popOperand ] + [self popOperand];
     } else if ([operation isEqualToString:@"*"]) {
         result = [self popOperand ] * [self popOperand];
-    } if ([operation isEqualToString:@"-"]) {
+    } else if ([operation isEqualToString:@"-"]) {
         double subtrahend = [self popOperand];
         result = [self popOperand] - subtrahend;
-    } if ([operation isEqualToString:@"/"]) {
+    } else if ([operation isEqualToString:@"/"]) {
         double divisor = [self popOperand];
         if (divisor) {
             result = [self popOperand] / divisor;
         } 
+    } else if ([operation isEqualToString:@"sin"]) {
+        result = sin([self popOperand]);
+    } else if ([operation isEqualToString:@"cos"]) {
+        result = cos([self popOperand]);
+    } else if ([operation isEqualToString:@"sqrt"]) {
+        result = sqrt([self popOperand]);
+    } else if ([operation isEqualToString:@"PI"]) {
+        result = 3.14159265359;
+    } else if ([operation isEqualToString:@"+/-"]) {
+        result = -1 * [self popOperand];
     }
+
     
     [self pushOperand:result];
     
     return result;
 }
+
+-(void) clearState {
+    self.operandStack = nil;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 @end
