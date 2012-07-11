@@ -151,6 +151,33 @@
     return [self popOperandOffStack:stack];
 }
 
++ (NSSet *)variablesUsedInProgram:(id)program
+{
+    NSMutableSet *result = [[NSMutableSet alloc] init];
+    
+    NSMutableArray *stack;
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+    } 
+    
+    
+    // find variables and add them to the set
+    for (int i=0; i < [stack count]; i++) {
+        if ([[stack objectAtIndex:i] isKindOfClass:[NSString class]]) {
+            NSString *stringValue = [stack objectAtIndex:i];
+            if (![self isValidOperation:stringValue]) {
+                [result addObject:stringValue];
+            }
+        }
+    }
+        
+    if ([result count] == 0) {
+        return nil;
+    }
+                 
+    return [result copy];
+}
+
 
 -(void) clearState {
     [self.programStack removeAllObjects];
