@@ -45,7 +45,8 @@
     }
 }
 - (IBAction)enterPressed {
-    [self.brain pushOperand:[self.display.text doubleValue]];
+    NSNumber *operand = [NSNumber numberWithDouble:[self.display.text doubleValue]];
+    [self.brain pushOperand:operand];
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.headsUpDisplay.text =	 [self.headsUpDisplay.text stringByAppendingFormat:@" %@ ", self.display.text];
 }
