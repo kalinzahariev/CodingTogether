@@ -42,6 +42,11 @@
     
     [self.programStack addObject:operation];
 //    return [CalculatorBrain runProgram:self.program];
+    return 0;
+}
+
+-(void) removeTopOfStack {
+    [self.programStack removeLastObject];
 }
 
 - (id) program {

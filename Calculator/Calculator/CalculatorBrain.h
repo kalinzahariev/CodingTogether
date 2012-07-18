@@ -13,6 +13,7 @@
 -(void) pushOperand:(id) operand;
 -(double) performOperation:(NSString *) operation;
 -(void) clearState;
+-(void) removeTopOfStack;
 
 @property (readonly) id program;
 +(double) runProgram:(id)program;

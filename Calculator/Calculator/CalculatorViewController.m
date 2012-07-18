@@ -102,13 +102,21 @@
     [self.brain clearState];
 }
 
+// This is the undo button
 - (IBAction)deletePressed {
     if (self.userIsInTheMiddleOfEnteringANumber) {
         self.display.text = [self.display.text substringWithRange:NSMakeRange(0, self.display.text.length-1)];
         if (self.display.text.length == 0) {
-            self.display.text = @"0";
+            double result = [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.variableValues];
+            self.display.text = [NSString stringWithFormat:@"%g", result];
+            self.headsUpDisplay.text =	 [CalculatorBrain descriptionOfProgram:self.brain.program];
             self.userIsInTheMiddleOfEnteringANumber = NO;
         }
+    } else {
+        [self.brain removeTopOfStack];
+        double result = [CalculatorBrain runProgram:self.brain.program usingVariableValues:self.variableValues];
+        self.display.text = [NSString stringWithFormat:@"%g", result];
+        self.headsUpDisplay.text =	 [CalculatorBrain descriptionOfProgram:self.brain.program];
     }
 }
 
