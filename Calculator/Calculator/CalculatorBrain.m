@@ -41,7 +41,7 @@
 -(double) performOperation:(NSString *) operation {
     
     [self.programStack addObject:operation];
-    return [CalculatorBrain runProgram:self.program];
+//    return [CalculatorBrain runProgram:self.program];
 }
 
 - (id) program {
@@ -73,8 +73,12 @@
         }
     } else if ([topOfStack isKindOfClass:[NSString class]]) {
         NSString *operation = topOfStack;
-        if (![self isValidOperation:operation]) { // for displaying variables
-            result = [result stringByAppendingString:operation];
+        if (![self isValidOperation:operation]) { // for displaying variables        
+            if ((operandsNeeded==0) && (stack.count)) { // multiple things on the stack
+                result = [result stringByAppendingFormat:@"%@, %@", [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded], topOfStack];     
+            } else {
+                result = [result stringByAppendingFormat:@"%@", topOfStack]; // variable name
+            }
         } else if ([operation isEqualToString:@"+"]) {
             NSString *secondPartOfAddition = [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded+1];
             result = [result stringByAppendingFormat:@"(%@+%@)", [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded], secondPartOfAddition];
