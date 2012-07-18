@@ -48,7 +48,7 @@
     NSNumber *operand = [NSNumber numberWithDouble:[self.display.text doubleValue]];
     [self.brain pushOperand:operand];
     self.userIsInTheMiddleOfEnteringANumber = NO;
-    self.headsUpDisplay.text =	 [self.headsUpDisplay.text stringByAppendingFormat:@" %@ ", self.display.text];
+    self.headsUpDisplay.text =	 [CalculatorBrain descriptionOfProgram:self.brain.program];
 }
 
 - (IBAction)operationPressed:(UIButton *)sender {
@@ -58,7 +58,7 @@
     
     double result = [self.brain performOperation:sender.currentTitle];
     self.display.text = [NSString stringWithFormat:@"%g", result];
-    self.headsUpDisplay.text = [self.headsUpDisplay.text stringByAppendingFormat:@" %@ = ", sender.currentTitle];
+    self.headsUpDisplay.text =	 [CalculatorBrain descriptionOfProgram:self.brain.program];
 }
 
 - (IBAction)clearPressed {

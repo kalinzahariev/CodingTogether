@@ -10,6 +10,8 @@
 
 @interface CalculatorBrain ()
 @property (nonatomic, strong) NSMutableArray *programStack;
++(double) popOperandOffStack:(NSMutableArray *)stack;
++(NSString *) descriptionOfTopOfStack:(NSMutableArray *)stack operandsNeeded: (NSUInteger) operandsNeeded;
 +(BOOL) isValidOperation:(NSString *)operation;
 @end
 
@@ -47,7 +49,61 @@
 }
 
 +(NSString *)descriptionOfProgram:(id)program {
-    return @"Not Implemented";
+    NSMutableArray *stack;
+    if ([program isKindOfClass:[NSArray class]]) {
+        stack = [program mutableCopy];
+    }
+    
+    return [self descriptionOfTopOfStack: stack operandsNeeded:0];
+}
+
++(NSString *) descriptionOfTopOfStack:(NSMutableArray *)stack operandsNeeded: (NSUInteger) operandsNeeded
+{
+    NSString * result = @"";
+    id topOfStack = [stack lastObject];
+    if (topOfStack) {
+        [stack removeLastObject];
+    }
+    
+    if ([topOfStack isKindOfClass:[NSNumber class]]) {
+        if ((operandsNeeded==0) && (stack.count)) { // multiple things on the stack
+            result = [result stringByAppendingFormat:@"%@, %@", [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded], topOfStack];     
+        } else {
+            result = [result stringByAppendingFormat:@"%@", topOfStack]; // operands
+        }
+    } else if ([topOfStack isKindOfClass:[NSString class]]) {
+        NSString *operation = topOfStack;
+        if (![self isValidOperation:operation]) { // for displaying variables
+            result = [result stringByAppendingString:operation];
+        } else if ([operation isEqualToString:@"+"]) {
+            NSString *secondPartOfAddition = [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded+1];
+            result = [result stringByAppendingFormat:@"(%@+%@)", [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded], secondPartOfAddition];
+        } else if ([operation isEqualToString:@"*"]) {
+            NSString *secondPartOfMultiplication = [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded+1];
+            result = [result stringByAppendingFormat:@"%@ * %@", [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded], secondPartOfMultiplication];
+        } else if ([operation isEqualToString:@"-"]) {
+            NSString *subtrahend = [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded+1];
+            result = [result stringByAppendingFormat:@"%@ - %@", [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded], subtrahend];
+        } else if ([operation isEqualToString:@"/"]) {
+            NSString *divisor = [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded+1];
+            if (divisor) { // not sure if this is needed here.
+                result = [result stringByAppendingFormat:@"%@ / %@", [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded], divisor];
+            } // else? what to do here?	
+        } else if ([operation isEqualToString:@"sin"]) {
+            result = [result stringByAppendingFormat:@"sin(%@)", [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded]];
+        } else if ([operation isEqualToString:@"cos"]) {
+            result = [result stringByAppendingFormat:@"cos(%@)", [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded]];
+        } else if ([operation isEqualToString:@"sqrt"]) {
+            result = [result stringByAppendingFormat:@"sqrt(%@)", [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded]];
+        } else if ([operation isEqualToString:@"PI"]) {
+            result = [result stringByAppendingFormat:@"%g", M_PI];
+        } else if ([operation isEqualToString:@"+/-"]) {
+            result = [result stringByAppendingFormat:@"-1 * %@", [self descriptionOfTopOfStack:stack operandsNeeded:operandsNeeded]];
+        }
+    }
+    
+    return result;
+    
 }
 
 
