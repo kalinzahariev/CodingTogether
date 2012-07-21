@@ -8,6 +8,7 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
+#import "GraphingViewController.h"
  
 @interface CalculatorViewController ()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
@@ -131,7 +132,12 @@
     }
 }
 
-
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"displayGraph"]) {
+        GraphingViewController *controller = segue.destinationViewController;
+        controller.program = self.brain.program;
+    }
+}
 
 - (void)viewDidUnload {
     [self setHeadsUpDisplay:nil];

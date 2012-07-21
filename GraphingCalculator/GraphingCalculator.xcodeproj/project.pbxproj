@@ -17,6 +17,9 @@
 		1553A3AF15BA139E00C1A95E /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1553A3AD15BA139E00C1A95E /* MainStoryboard_iPad.storyboard */; };
 		1553A3BC15BA13CF00C1A95E /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 1553A3B915BA13CF00C1A95E /* CalculatorBrain.m */; };
 		1553A3BD15BA13CF00C1A95E /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1553A3BB15BA13CF00C1A95E /* CalculatorViewController.m */; };
+		1553A3C015BA227600C1A95E /* GraphingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1553A3BF15BA227600C1A95E /* GraphingView.m */; };
+		1553A3C315BA22B800C1A95E /* GraphingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1553A3C215BA22B800C1A95E /* GraphingViewController.m */; };
+		1553A3C615BA23E100C1A95E /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1553A3C515BA23E100C1A95E /* AxesDrawer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,12 @@
 		1553A3B915BA13CF00C1A95E /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalculatorBrain.m; path = ../CalculatorBrain.m; sourceTree = "<group>"; };
 		1553A3BA15BA13CF00C1A95E /* CalculatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CalculatorViewController.h; path = ../CalculatorViewController.h; sourceTree = "<group>"; };
 		1553A3BB15BA13CF00C1A95E /* CalculatorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CalculatorViewController.m; path = ../CalculatorViewController.m; sourceTree = "<group>"; };
+		1553A3BE15BA227600C1A95E /* GraphingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphingView.h; sourceTree = "<group>"; };
+		1553A3BF15BA227600C1A95E /* GraphingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphingView.m; sourceTree = "<group>"; };
+		1553A3C115BA22B800C1A95E /* GraphingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphingViewController.h; sourceTree = "<group>"; };
+		1553A3C215BA22B800C1A95E /* GraphingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphingViewController.m; sourceTree = "<group>"; };
+		1553A3C415BA23E100C1A95E /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
+		1553A3C515BA23E100C1A95E /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +94,12 @@
 				1553A3B815BA13CF00C1A95E /* CalculatorBrain.h */,
 				1553A3B915BA13CF00C1A95E /* CalculatorBrain.m */,
 				1553A3AA15BA139E00C1A95E /* MainStoryboard_iPhone.storyboard */,
+				1553A3C415BA23E100C1A95E /* AxesDrawer.h */,
+				1553A3C515BA23E100C1A95E /* AxesDrawer.m */,
+				1553A3BE15BA227600C1A95E /* GraphingView.h */,
+				1553A3BF15BA227600C1A95E /* GraphingView.m */,
+				1553A3C115BA22B800C1A95E /* GraphingViewController.h */,
+				1553A3C215BA22B800C1A95E /* GraphingViewController.m */,
 				1553A3AD15BA139E00C1A95E /* MainStoryboard_iPad.storyboard */,
 				1553A3BA15BA13CF00C1A95E /* CalculatorViewController.h */,
 				1553A3BB15BA13CF00C1A95E /* CalculatorViewController.m */,
@@ -175,6 +190,9 @@
 				1553A3A915BA139E00C1A95E /* CalculatorAppDelegate.m in Sources */,
 				1553A3BC15BA13CF00C1A95E /* CalculatorBrain.m in Sources */,
 				1553A3BD15BA13CF00C1A95E /* CalculatorViewController.m in Sources */,
+				1553A3C015BA227600C1A95E /* GraphingView.m in Sources */,
+				1553A3C315BA22B800C1A95E /* GraphingViewController.m in Sources */,
+				1553A3C615BA23E100C1A95E /* AxesDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
