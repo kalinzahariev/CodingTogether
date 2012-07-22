@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphingView.h"
 
-@interface GraphingViewController : UIViewController
+@interface GraphingViewController : UIViewController <GraphingData>
 
 @property (nonatomic, strong) id program;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;

@@ -22,6 +22,10 @@
 @synthesize scale = _scale;
 
 
+- (double) dataForValue:(double)value {
+    NSDictionary *variables = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithDouble:value], @"x", nil];
+    return [CalculatorBrain runProgram:self.program usingVariableValues:variables];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,6 +48,8 @@
     graphngView.graphScale = 1.0;
     // populate descrition
     self.descriptionLabel.text = [CalculatorBrain descriptionOfProgram:self.program];
+    
+    graphngView.delegate = self;
 }
 
 - (void)viewDidUnload

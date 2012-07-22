@@ -23,6 +23,19 @@
     return self;
 }
 
+#define POINT_SIZE 2
+
+- (void) drawPointAtX: (double) x Y: (double) y{
+   	CGContextRef context = UIGraphicsGetCurrentContext();
+    
+	UIGraphicsPushContext(context);
+    
+	CGContextBeginPath(context);
+    CGContextAddEllipseInRect(context, CGRectMake(x-POINT_SIZE, y-POINT_SIZE, 2*POINT_SIZE, 2*POINT_SIZE));
+	CGContextStrokePath(context);
+    
+	UIGraphicsPopContext(); 
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -35,6 +48,10 @@
 
     
     // then for each pixel - get the calculated value and draw it
+    for (int i = self.bounds.origin.x; i < self.bounds.origin.x + self.bounds.size.width; i++) {
+        double yValue = [self.delegate dataForValue:i];
+        [self drawPointAtX:i Y: yValue];
+    }
     
 }
 
