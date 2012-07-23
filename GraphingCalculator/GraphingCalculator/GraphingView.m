@@ -25,14 +25,14 @@
 
 #define POINT_SIZE 2
 
-- (void) drawPointAtX: (double) x Y: (double) y{
+- (void) drawPointAtX: (NSUInteger) x Y: (NSUInteger) y{
    	CGContextRef context = UIGraphicsGetCurrentContext();
     
 	UIGraphicsPushContext(context);
     
 	CGContextBeginPath(context);
     CGContextAddEllipseInRect(context, CGRectMake(x-POINT_SIZE, y-POINT_SIZE, 2*POINT_SIZE, 2*POINT_SIZE));
-	CGContextStrokePath(context);
+	CGContextFillPath(context);
     
 	UIGraphicsPopContext(); 
 }
@@ -49,8 +49,10 @@
     
     // then for each pixel - get the calculated value and draw it
     for (int i = self.bounds.origin.x; i < self.bounds.origin.x + self.bounds.size.width; i++) {
-        double yValue = [self.delegate dataForValue:i];
-        [self drawPointAtX:i Y: yValue];
+        double xValue = (i - self.graphOrigin.x) / self.graphScale;
+        double yValue = [self.delegate dataForValue:xValue];
+        NSUInteger y = self.graphOrigin.y - (yValue / self.graphScale);
+        [self drawPointAtX:i Y: y];
     }
     
 }
