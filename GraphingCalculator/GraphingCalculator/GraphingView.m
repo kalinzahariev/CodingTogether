@@ -51,7 +51,7 @@
     for (int i = self.bounds.origin.x; i < self.bounds.origin.x + self.bounds.size.width; i++) {
         double xValue = (i - self.graphOrigin.x) / self.graphScale;
         double yValue = [self.delegate dataForValue:xValue];
-        NSUInteger y = self.graphOrigin.y - (yValue / self.graphScale);
+        NSUInteger y = self.graphOrigin.y - (yValue * self.graphScale);
         [self drawPointAtX:i Y: y];
     }
     

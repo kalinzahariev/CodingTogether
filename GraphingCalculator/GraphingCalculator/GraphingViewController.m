@@ -36,6 +36,17 @@
     return self;
 }
 
+-(void) pinchGestureResponder: (UIPinchGestureRecognizer *) sender {
+    if (sender.state == UIGestureRecognizerStateChanged ||
+        sender.state == UIGestureRecognizerStateEnded) {
+        GraphingView *graphingView = (GraphingView*)self.view;
+        graphingView.graphScale *= sender.scale;
+        sender.scale = 1;
+        [graphingView setNeedsDisplay];
+    }
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -50,6 +61,12 @@
     self.descriptionLabel.text = [CalculatorBrain descriptionOfProgram:self.program];
     
     graphngView.delegate = self;
+    
+    // add gesture recognizers
+    UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchGestureResponder:)];
+    [graphngView addGestureRecognizer:pinchGestureRecognizer];
+    
+    
 }
 
 - (void)viewDidUnload
