@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @protocol GraphingData <NSObject>
 
 -(double) dataForValue:(double)value;
@@ -20,4 +21,7 @@
 @property CGPoint graphOrigin;
 @property CGFloat graphScale;
 
+-(void) pinchGestureResponder: (UIPinchGestureRecognizer *) sender;
+-(void) panGestureResponder: (UIPanGestureRecognizer *) sender;
+-(void) trippleTapGestureResponder: (UITapGestureRecognizer *) sender;
 @end

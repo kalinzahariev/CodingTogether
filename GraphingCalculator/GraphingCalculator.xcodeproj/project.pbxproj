@@ -20,6 +20,7 @@
 		1553A3C015BA227600C1A95E /* GraphingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1553A3BF15BA227600C1A95E /* GraphingView.m */; };
 		1553A3C315BA22B800C1A95E /* GraphingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1553A3C215BA22B800C1A95E /* GraphingViewController.m */; };
 		1553A3C615BA23E100C1A95E /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1553A3C515BA23E100C1A95E /* AxesDrawer.m */; };
+		15FBEF2315CE609800C9D368 /* RotatableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FBEF2215CE609800C9D368 /* RotatableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,9 @@
 		1553A3C215BA22B800C1A95E /* GraphingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphingViewController.m; sourceTree = "<group>"; };
 		1553A3C415BA23E100C1A95E /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
 		1553A3C515BA23E100C1A95E /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
+		15F076AA15D31358001959C3 /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; };
+		15FBEF2115CE609800C9D368 /* RotatableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatableViewController.h; sourceTree = "<group>"; };
+		15FBEF2215CE609800C9D368 /* RotatableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,15 +98,18 @@
 				1553A3B815BA13CF00C1A95E /* CalculatorBrain.h */,
 				1553A3B915BA13CF00C1A95E /* CalculatorBrain.m */,
 				1553A3AA15BA139E00C1A95E /* MainStoryboard_iPhone.storyboard */,
+				1553A3AD15BA139E00C1A95E /* MainStoryboard_iPad.storyboard */,
+				15FBEF2115CE609800C9D368 /* RotatableViewController.h */,
+				15FBEF2215CE609800C9D368 /* RotatableViewController.m */,
 				1553A3C415BA23E100C1A95E /* AxesDrawer.h */,
 				1553A3C515BA23E100C1A95E /* AxesDrawer.m */,
 				1553A3BE15BA227600C1A95E /* GraphingView.h */,
 				1553A3BF15BA227600C1A95E /* GraphingView.m */,
 				1553A3C115BA22B800C1A95E /* GraphingViewController.h */,
 				1553A3C215BA22B800C1A95E /* GraphingViewController.m */,
-				1553A3AD15BA139E00C1A95E /* MainStoryboard_iPad.storyboard */,
 				1553A3BA15BA13CF00C1A95E /* CalculatorViewController.h */,
 				1553A3BB15BA13CF00C1A95E /* CalculatorViewController.m */,
+				15F076AA15D31358001959C3 /* SplitViewBarButtonItemPresenter.h */,
 				1553A3A715BA139E00C1A95E /* CalculatorAppDelegate.h */,
 				1553A3A815BA139E00C1A95E /* CalculatorAppDelegate.m */,
 				1553A39F15BA139D00C1A95E /* Supporting Files */,
@@ -193,6 +200,7 @@
 				1553A3C015BA227600C1A95E /* GraphingView.m in Sources */,
 				1553A3C315BA22B800C1A95E /* GraphingViewController.m in Sources */,
 				1553A3C615BA23E100C1A95E /* AxesDrawer.m in Sources */,
+				15FBEF2315CE609800C9D368 /* RotatableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +322,7 @@
 				1553A3B715BA139E00C1A95E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

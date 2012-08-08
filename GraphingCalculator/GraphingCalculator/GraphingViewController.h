@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "GraphingView.h"
+#import "SplitViewBarButtonItemPresenter.h"
 
-@interface GraphingViewController : UIViewController <GraphingData>
+@interface GraphingViewController : UIViewController <GraphingData, SplitViewBarButtonItemPresenter>
 
 @property (nonatomic, strong) id program;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;

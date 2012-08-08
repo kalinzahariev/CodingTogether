@@ -13,6 +13,7 @@
 @interface GraphingViewController ()
 @property CGPoint origin;
 @property CGFloat scale;
+@property (nonatomic, weak) IBOutlet UIToolbar * toolbar;
 @end
 
 @implementation GraphingViewController
@@ -20,8 +21,24 @@
 @synthesize descriptionLabel = _descriptionLabel;
 @synthesize origin = _origin;
 @synthesize scale = _scale;
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
+@synthesize toolbar = _toolbar;
 
 
+
+-(void) setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem {
+    if (_splitViewBarButtonItem != splitViewBarButtonItem) {
+        NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
+        if (_splitViewBarButtonItem) {
+            [toolbarItems removeObject:_splitViewBarButtonItem];
+        }
+        if (splitViewBarButtonItem) {
+            [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
+        }
+        self.toolbar.items = toolbarItems;
+        _splitViewBarButtonItem = splitViewBarButtonItem;  
+    }
+}
 - (double) dataForValue:(double)value {
     NSDictionary *variables = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithDouble:value], @"x", nil];
     return [CalculatorBrain runProgram:self.program usingVariableValues:variables];
@@ -36,16 +53,13 @@
     return self;
 }
 
--(void) pinchGestureResponder: (UIPinchGestureRecognizer *) sender {
-    if (sender.state == UIGestureRecognizerStateChanged ||
-        sender.state == UIGestureRecognizerStateEnded) {
-        GraphingView *graphingView = (GraphingView*)self.view;
-        graphingView.graphScale *= sender.scale;
-        sender.scale = 1;
-        [graphingView setNeedsDisplay];
+-(void)setProgram:(id)program {
+    if (_program != program) {
+        _program = program;
+        self.descriptionLabel.text = [CalculatorBrain descriptionOfProgram:self.program];
+        [self.view setNeedsDisplay];
     }
 }
-
 
 - (void)viewDidLoad
 {
@@ -54,19 +68,25 @@
     // load origin and scale from UserDefaults
     CGRect bounds = self.view.bounds;
     
-    GraphingView *graphngView = (GraphingView *) self.view;
-    graphngView.graphOrigin = CGPointMake(bounds.origin.x + bounds.size.width/2, bounds.origin.y + bounds.size.height/2);
-    graphngView.graphScale = 1.0;
+    GraphingView *graphingView = (GraphingView *) self.view;
+    graphingView.graphOrigin = CGPointMake(bounds.origin.x + bounds.size.width/2, bounds.origin.y + bounds.size.height/2);
+    graphingView.graphScale = 1.0;
     // populate descrition
     self.descriptionLabel.text = [CalculatorBrain descriptionOfProgram:self.program];
     
-    graphngView.delegate = self;
+    graphingView.delegate = self;
     
     // add gesture recognizers
-    UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchGestureResponder:)];
-    [graphngView addGestureRecognizer:pinchGestureRecognizer];
+    UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:graphingView action:@selector(pinchGestureResponder:)];
+    [graphingView addGestureRecognizer:pinchGestureRecognizer];
     
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:graphingView action:@selector(panGestureResponder:)];
+    [graphingView addGestureRecognizer:panGestureRecognizer];
     
+    UITapGestureRecognizer *trippleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:graphingView action:@selector(trippleTapGestureResponder:)];
+    trippleTapGestureRecognizer.numberOfTapsRequired = 3;
+    [graphingView addGestureRecognizer:trippleTapGestureRecognizer];
+
 }
 
 - (void)viewDidUnload
@@ -80,7 +100,8 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
+//    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end
